@@ -1,0 +1,71 @@
+<header class="text-gray-700 body-font">
+  <div
+    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
+  >
+    <a
+      href="{% url 'dashboard' %}"
+      class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+    >
+      <img src='/static/images/architect.png' width="60px" />
+      <span class="ml-3 text-xl">VDPP</span>
+    </a>
+    <nav
+      class="md:ml-auto flex flex-wrap items-center text-base justify-center"
+    >
+      {% if not request.user.is_authenticated %}
+      <a href="{% url 'signup' %}" class="mr-5 hover:text-gray-900">Regisztráció</a>
+      {% else %} {% if request.user.is_organisor %}
+      <a href="{% url 'agents:agent-list' %}" class="mr-5 hover:text-gray-900"
+        >Dolgozók</a
+      >
+      {% endif %}
+      <a href="{% url 'leads:lead-list' %}" class="mr-5 hover:text-gray-900"
+        >Megrendelések</a
+      >
+      <a href="{% url 'leads:category-list' %}" class="mr-5 hover:text-gray-900"
+        >Kategóriák</a
+      >
+      <a href="{% url 'dashboard' %}" class="mr-5 hover:text-gray-900"
+        >Irányítópult</a
+      >
+      {% endif %}
+    </nav>
+    {% if request.user.is_authenticated %} Bejelentkezve mint: {{ request.user.username }}
+    <a
+      href="{% url 'logout' %}"
+      class="ml-3 inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+    >
+      Kilépés
+      <svg
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        class="w-4 h-4 ml-1"
+        viewBox="0 0 24 24"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+    {% else %}
+    <a
+      href="{% url 'login' %}"
+      class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+    >
+      Belépés
+      <svg
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        class="w-4 h-4 ml-1"
+        viewBox="0 0 24 24"
+      >
+        <path d="M5 12h14M12 5l7 7-7 7"></path>
+      </svg>
+    </a>
+    {% endif %}
+  </div>
+</header>
