@@ -4,10 +4,10 @@
   <a
     class="hover:text-blue-500"
     href="{% url 'leads:lead-detail' object.lead.pk %}"
-    >Go back to followup</a
+    >Vissza a jegyzethez</a
   >
   <div class="py-5 border-t border-gray-200">
-    <h1 class="text-4xl text-gray-800">Update this followup</h1>
+    <h1 class="text-4xl text-gray-800">Jegyzet módosítása</h1>
   </div>
   <form method="post" class="mt-5">
     {% csrf_token %} {{ form|crispy }}
